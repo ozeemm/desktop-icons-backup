@@ -1,3 +1,4 @@
+using System.Text.Encodings.Web;
 using System.Text.Json;
 using DesktopIconsBackup.Models;
 
@@ -11,7 +12,11 @@ internal sealed class DesktopIconLayoutService
     /// <summary>
     /// Настройки сериализации профилей в JSON с отступами для удобства чтения.
     /// </summary>
-    private static readonly JsonSerializerOptions JsonOptions = new() { WriteIndented = true };
+    private static readonly JsonSerializerOptions JsonOptions = new()
+    {
+        WriteIndented = true,
+        Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping,
+    };
 
     /// <summary>Каталог, в котором находятся файлы профилей.</summary>
     private readonly string layoutsDirectory;
